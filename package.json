@@ -1,0 +1,22 @@
+{
+  "name": "chat-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "pnpm --filter @chat/backend dev",
+    "dev:ws": "pnpm --filter @chat/ws dev",
+    "dev:frontend": "pnpm --filter @chat/frontend dev",
+    "dev": "concurrently \"pnpm dev:backend\" \"pnpm dev:ws\" \"pnpm dev:frontend\"",
+    "build": "turbo run build",
+    "start": "turbo run start"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "turbo": "^1.9.3",
+    "pnpm": "^8.0.0"
+  }
+}

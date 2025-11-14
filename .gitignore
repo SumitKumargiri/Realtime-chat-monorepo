@@ -1,0 +1,11 @@
+node_modules
+.env
+.env.*
+/.turbo
+/.next
+dist
+pnpm-lock.yaml
+*.sqlite
+coverage
+/.idea
+.vscode

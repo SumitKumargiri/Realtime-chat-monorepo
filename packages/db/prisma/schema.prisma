@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Default to SQLite for quick local development. To use PostgreSQL in production,
+// change `provider` to "postgresql" and set `DATABASE_URL` accordingly.
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  sentRequests    FriendRequest[] @relation("sentRequests")
+  receivedRequests FriendRequest[] @relation("receivedRequests")
+  friendshipsA    Friendship[] @relation("friendA")
+  friendshipsB    Friendship[] @relation("friendB")
+  messagesSent    Message[] @relation("sentMessages")
+  messagesReceived Message[] @relation("receivedMessages")
+}
+
+model FriendRequest {
+  id        Int      @id @default(autoincrement())
+  from      User     @relation("sentRequests", fields: [fromId], references: [id])
+  fromId    Int
+  to        User     @relation("receivedRequests", fields: [toId], references: [id])
+  toId      Int
+  status    String   @default("pending") // pending, accepted, rejected
+  createdAt DateTime @default(now())
+}
+
+model Friendship {
+  id     Int  @id @default(autoincrement())
+  userA  User @relation("friendA", fields: [userAId], references: [id])
+  userAId Int
+  userB  User @relation("friendB", fields: [userBId], references: [id])
+  userBId Int
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  from      User     @relation("sentMessages", fields: [fromId], references: [id])
+  fromId    Int
+  to        User     @relation("receivedMessages", fields: [toId], references: [id])
+  toId      Int
+  body      String
+  createdAt DateTime @default(now())
+}

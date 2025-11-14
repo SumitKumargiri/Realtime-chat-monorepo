@@ -1,0 +1,17 @@
+{
+  "name": "@chat/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "build": "echo 'No build needed'"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0",
+    "typescript": "^5.0.0"
+  }
+}
