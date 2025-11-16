@@ -23,7 +23,7 @@ export default function Dashboard() {
         <button className="px-3 py-2 bg-blue-600 text-white" onClick={load}>Load Friends</button>
       </div>
       <ul>
-        {friends.map((f) => (
+        {friends?.map((f) => (
           <li key={f.id} className="p-2 border-b">{f.name || f.email}</li>
         ))}
       </ul>

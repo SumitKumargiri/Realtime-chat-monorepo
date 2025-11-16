@@ -8,10 +8,10 @@
     "build": "echo 'No build needed'"
   },
   "dependencies": {
-    "@prisma/client": "^5.0.0"
+    "@prisma/client": "^6.19.0"
   },
   "devDependencies": {
-    "prisma": "^5.0.0",
+    "prisma": "^6.19.0",
     "typescript": "^5.0.0"
   }
 }
